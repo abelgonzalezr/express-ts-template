@@ -7,14 +7,16 @@ import {
     Query,
     Route,
     SuccessResponse,
-    Response
+    Response, 
+    Security
   } from "tsoa";
-  import { User } from "./user";
-  import { UsersService, UserCreationParams } from "./usersService";
+  import { User } from "../models/user";
+  import { UsersService, UserCreationParams } from "../services/usersService";
   import { ValidateErrorJSON } from "../shared/interfaces";
   
   @Route("users")
   export class UsersController extends Controller {
+    
     @Get("{userId}")
     public async getUser(
       @Path() userId: number,
@@ -22,6 +24,8 @@ import {
     ): Promise<User> {
       return new UsersService().get(userId, name);
     }
+
+    @Security("jwt")
     @Response<ValidateErrorJSON>(422, "Validation Failed")
     @SuccessResponse("201", "Created") // Custom success response
     @Post()

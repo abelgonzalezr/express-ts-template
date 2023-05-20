@@ -28,12 +28,15 @@ app.use(function notFoundHandler(_req, res: ExResponse) {
 });
 
 
+
 app.use(function errorHandler(
     err: unknown,
     req: ExRequest,
     res: ExResponse,
     next: NextFunction
   ): ExResponse | void {
+
+    
     if (err instanceof ValidateError) {
       console.warn(`Caught Validation Error for ${req.path}:`, err.fields);
       return res.status(422).json({
@@ -42,6 +45,9 @@ app.use(function errorHandler(
       });
     }
     if (err instanceof Error) {
+      if (err.hasOwnProperty('status')) {
+        res.status(401).json({ message: 'Unauthorized' });
+      } 
       return res.status(500).json({
         message: "Internal Server Error",
       });

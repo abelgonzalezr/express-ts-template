@@ -1,4 +1,4 @@
-import { User } from "./user";
+import { User } from "../models/user";
 
 
 export type UserCreationParams = Pick<User, "email" | "name">;
