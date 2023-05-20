@@ -21,6 +21,13 @@ app.use("/docs", swaggerUi.serve, async (_req: ExRequest, res: ExResponse) => {
   });
 RegisterRoutes(app);
 
+app.use(function notFoundHandler(_req, res: ExResponse) {
+  res.status(404).send({
+    message: "Not Found",
+  });
+});
+
+
 app.use(function errorHandler(
     err: unknown,
     req: ExRequest,
