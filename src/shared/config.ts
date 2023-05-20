@@ -10,7 +10,6 @@ export default {
     version: pjson.version,
     nodeEnv: process.env.NODE_ENV,
     port: parseInt(process.env.PORT||"3000"),
-    prefix: swagger.spec.basePath||"/api",
   },
   JWT: {
     SECRET: process.env.SECRET_KEY||"secret",

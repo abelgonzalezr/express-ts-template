@@ -4,5 +4,5 @@ import config from "./shared/config";
 const port = process.env.PORT || 3000;
 
 app.listen(port, () =>
-  console.log(`Example app listening at http://localhost:${config.app.port}${config.app.prefix}`)
+  console.log(`Example app listening at http://localhost:${config.app.port}`)
 );
