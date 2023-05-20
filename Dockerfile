@@ -16,7 +16,6 @@ RUN yarn install
 
 RUN yarn build
 
-RUN ls
 
 EXPOSE 3000
 
