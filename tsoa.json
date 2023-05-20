@@ -3,18 +3,23 @@
   "noImplicitAdditionalProperties": "throw-on-extras",
   "controllerPathGlobs": ["src/**/*Controller.ts"],
   "spec": {
+    "basePath":"/api",
     "outputDirectory": "build",
     "specVersion": 3,
     "securityDefinitions": {
-      "api_key": {
-          "type": "apiKey",
-          "name": "access_token",
-          "in": "query"
+      "jwt": {
+        "type": "apiKey",
+        "name": "Authorization",
+        "in": "header",
+        "description": "JWT token",
+        "example": "Bearer <token>"
       }
   }
+  
   },
   "routes": {
     "routesDir": "build",
     "authenticationModule": "./authentication.ts"
   }
+  
 }
